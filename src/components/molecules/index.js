@@ -8,6 +8,7 @@ import SwapContentTawafLiveStep from './SwapContentTawafLiveStep';
 import GlowingWave from './GlowingWave';
 import AudienceTawaf from './AudienceTawaf';
 import HostTawaf from './HostTawaf';
+import HostWalkieTalkie from './HostWalkieTalkie';
 
 export {
     BottomNavigator,
@@ -20,4 +21,5 @@ export {
     GlowingWave,
     AudienceTawaf,
     HostTawaf,
+    HostWalkieTalkie,
 }

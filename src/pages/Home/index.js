@@ -66,6 +66,20 @@ const menu = [
     color: ['#AbE0EE', '#7CC3D5'],
     navigation: 'Cerita Baitullah'
   },
+  {
+    id: 6,
+    icon: require('../../assets/icon/icon-tawaf-live-white.png'),
+    title: 'Tawaf Live',
+    color: ['#AbE0EE', '#7CC3D5'],
+    navigation: 'Tawaf'
+  },
+  {
+    id: 7,
+    icon: require('../../assets/icon/icon-walkie-talkie-white.png'),
+    title: 'Walkie Talkie',
+    color: ['#AbE0EE', '#7CC3D5'],
+    navigation: 'WalkieTalkie'
+  },
 ];
 // Fungsi untuk membagi data ke dalam baris
 const chunkData = (menu, numColumns) => {

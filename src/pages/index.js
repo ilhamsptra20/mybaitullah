@@ -4,8 +4,15 @@ import TawafLiveJoin from './TawafLiveJoin';
 import TawafLiveStatus from './TawafLiveStatus';
 import TawafLiveList from './TawafLiveList';
 import TawafRoom from './TawafRoom';
+import WalkieTalkie from './WalkieTalkie';
+import WalkieTalkieJoin from './WalkieTalkieJoin';
+import WalkieTalkieStatus from './WalkieTalkieStatus';
+import WalkieTalkieList from './WalkieTalkieList';
+import WalkieTalkieRoom from './WalkieTalkieRoom';
 import MyChannel from './MyChannel';
+import MyWalkieTalkie from './MyWalkieTalkie';
 import CreateTawafChannel from './CreateTawafChannel';
+import CreateWalkieTalkieChannel from './CreateWalkieTalkieChannel';
 import Ticket from './Ticket';
 import CeritaBaitullah from './CeritaBaitullah';
 import CeritaBaitullahList from './CeritaBaitullahList';
@@ -48,8 +55,15 @@ export {
     TawafLiveStatus,
     TawafLiveList,
     TawafRoom,
+    WalkieTalkie,
+    WalkieTalkieJoin,
+    WalkieTalkieStatus,
+    WalkieTalkieList,
+    WalkieTalkieRoom,
     MyChannel,
+    MyWalkieTalkie,
     CreateTawafChannel,
+    CreateWalkieTalkieChannel,
     Ticket,
     CeritaBaitullah,
     CeritaBaitullahList,

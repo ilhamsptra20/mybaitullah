@@ -10,8 +10,15 @@ import {
     TawafLiveStatus,
     TawafRoom,
     TawafLiveList,
+    WalkieTalkie,
+    WalkieTalkieJoin,
+    WalkieTalkieStatus,
+    WalkieTalkieRoom,
+    WalkieTalkieList,
     MyChannel,
+    MyWalkieTalkie,
     CreateTawafChannel,
+    CreateWalkieTalkieChannel,
     Ticket,
     CeritaBaitullah,
     CeritaBaitullahList,
@@ -104,11 +111,18 @@ const Router = () => {
             <Stack.Screen name="OrderList" component={OrderList} options={{ headerShown: false }} />
             <Stack.Screen name="OrderTicketStatus" component={OrderTicketStatus} options={{ headerShown: false }} />
             <Stack.Screen name="MyChannel" component={MyChannel} options={{ headerShown: false }} />
+            <Stack.Screen name="MyWalkieTalkie" component={MyWalkieTalkie} options={{ headerShown: false }} />
             <Stack.Screen name="CreateTawafChannel" component={CreateTawafChannel} options={{ headerShown: false }} />
+            <Stack.Screen name="CreateWalkieTalkieChannel" component={CreateWalkieTalkieChannel} options={{ headerShown: false }} />
             <Stack.Screen name="TawafLiveJoin" component={TawafLiveJoin} options={{ headerShown: false }} />
             <Stack.Screen name="TawafLiveStatus" component={TawafLiveStatus} options={{ headerShown: false }} />
             <Stack.Screen name="TawafRoom" component={TawafRoom} options={{ headerShown: false }} />
             <Stack.Screen name="TawafLiveList" component={TawafLiveList} options={{ headerShown: false }} />
+            <Stack.Screen name="WalkieTalkie" component={WalkieTalkie} options={{ headerShown: false }} />
+            <Stack.Screen name="WalkieTalkieJoin" component={WalkieTalkieJoin} options={{ headerShown: false }} />
+            <Stack.Screen name="WalkieTalkieStatus" component={WalkieTalkieStatus} options={{ headerShown: false }} />
+            <Stack.Screen name="WalkieTalkieRoom" component={WalkieTalkieRoom} options={{ headerShown: false }} />
+            <Stack.Screen name="WalkieTalkieList" component={WalkieTalkieList} options={{ headerShown: false }} />
             <Stack.Screen name="ProfileEdit" component={ProfileEdit} options={{ headerShown: false }} />
             <Stack.Screen name="QuranListScreen" component={QuranListScreen} options={{ headerShown: false }} />
             <Stack.Screen name="QuranDetailScreen" component={QuranDetailScreen} options={{ headerShown: false }} />
