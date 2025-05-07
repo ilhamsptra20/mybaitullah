@@ -52,22 +52,20 @@ const WalkieTalkie = ({ navigation }) => {
     getItem('user').then((res) => {
       if (res) {
         console.log(res.is_ustadz);
-        if (res.is_ustadz) {
+        if (res.is_ustadz || res.type_akun == '2') {
           setParticipant("host");
         } else {
-          setParticipant("host");
+          navigation.replace('MainApp', { screen: 'Home' });
         }
       } else {
         navigation.replace('SignIn');
       }
-
     });
   }, []);
 
   return (
     <View style={BaseStyle.container}>
       <StatusBar backgroundColor="transparent" translucent barStyle="light-content" />
-
       <HostWalkieTalkie navigation={navigation} role={participant} />
     </View>
   );

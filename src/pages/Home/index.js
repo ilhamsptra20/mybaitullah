@@ -29,78 +29,6 @@ const skeWidth = cardWidth - 32;
 
 const height = Dimensions.get("window");
 
-// MENU
-const menu = [
-  {
-    id: 1,
-    icon: require('../../assets/icon/icon-alquran-02.png'),
-    title: 'Al-Quran',
-    color: ['#AbE0EE', '#7CC3D5'],
-    navigation: 'QuranListScreen'
-  },
-  {
-    id: 2,
-    icon: require('../../assets/icon/icon-doa-02.png'),
-    title: 'Doa Baitullah',
-    color: ['#7CC3D5', '#3DCBB1'],
-    navigation: 'PrayerScreen'
-  },
-  {
-    id: 3,
-    icon: require('../../assets/icon/icon-kiblat-02.png'),
-    title: 'Kiblat',
-    color: ['#7CC3D5', '#076277'],
-    navigation: 'QiblaScreen'
-  },
-  {
-    id: 4,
-    icon: require('../../assets/icon/icon-tiket-02.png'),
-    title: 'Tiket',
-    color: ['#AbE0EE', '#7CC3D5'],
-    navigation: 'ComingSoon'
-  },
-  {
-    id: 5,
-    icon: require('../../assets/icon/icon-cerita-baitullah-02.png'),
-    title: 'Cerita Baitullah',
-    color: ['#AbE0EE', '#7CC3D5'],
-    navigation: 'Cerita Baitullah'
-  },
-  {
-    id: 6,
-    icon: require('../../assets/icon/icon-tawaf-live-white.png'),
-    title: 'Tawaf Live',
-    color: ['#AbE0EE', '#7CC3D5'],
-    navigation: 'Tawaf'
-  },
-  {
-    id: 7,
-    icon: require('../../assets/icon/icon-walkie-talkie-white.png'),
-    title: 'Walkie Talkie',
-    color: ['#AbE0EE', '#7CC3D5'],
-    navigation: 'WalkieTalkie'
-  },
-];
-// Fungsi untuk membagi data ke dalam baris
-const chunkData = (menu, numColumns) => {
-  const rows = [];
-  for (let i = 0; i < menu.length; i += numColumns) {
-    rows.push(menu.slice(i, i + numColumns));
-  }
-
-  // Pastikan baris terakhir memiliki elemen kosong jika kurang dari numColumns
-  const lastRow = rows[rows.length - 1];
-  if (lastRow && lastRow.length < numColumns) {
-    while (lastRow.length < numColumns) {
-      lastRow.push({ id: `empty-${lastRow.length}`, name: "empty", empty: true });
-    }
-  }
-
-  return rows;
-};
-
-const rows = chunkData(menu, 4); // Membagi data menjadi baris dengan 4 kolom
-
 const Home = ({ navigation }) => {
   const width = Dimensions.get('window').width;
 
@@ -119,6 +47,9 @@ const Home = ({ navigation }) => {
   // status 0 belum login
   // status 1 sudah login
   let [status, setStatus] = useState(0);
+
+  // Role user
+  let [role, setRole] = useState("jemaah");
 
   // USER DATA
   const { user, loadingUser, errorUser } = userData();
@@ -141,11 +72,100 @@ const Home = ({ navigation }) => {
   const { ceritaBaitullah, loadingCeritaBaitullah, errorCeritaBaitullah } = ceritaBaitullahData();
   const limitCeritaBaitullah = ceritaBaitullah.slice(0, 5);
 
+  // MENU
+  const menu = [
+    {
+      id: 1,
+      icon: require('../../assets/icon/icon-alquran-02.png'),
+      title: 'Al-Quran',
+      color: ['#AbE0EE', '#7CC3D5'],
+      navigation: 'QuranListScreen',
+      role: 'all'
+    },
+    {
+      id: 2,
+      icon: require('../../assets/icon/icon-doa-02.png'),
+      title: 'Doa Baitullah',
+      color: ['#7CC3D5', '#3DCBB1'],
+      navigation: 'PrayerScreen',
+      role: 'all'
+    },
+    {
+      id: 3,
+      icon: require('../../assets/icon/icon-kiblat-02.png'),
+      title: 'Kiblat',
+      color: ['#7CC3D5', '#076277'],
+      navigation: 'QiblaScreen',
+      role: 'all'
+    },
+    {
+      id: 4,
+      icon: require('../../assets/icon/icon-tiket-02.png'),
+      title: 'Tiket',
+      color: ['#AbE0EE', '#7CC3D5'],
+      navigation: 'ComingSoon',
+      role: 'all'
+    },
+    {
+      id: 5,
+      icon: require('../../assets/icon/icon-cerita-baitullah-02.png'),
+      title: 'Cerita Baitullah',
+      color: ['#AbE0EE', '#7CC3D5'],
+      navigation: 'Cerita Baitullah',
+      role: 'all'
+    },
+    {
+      id: 6,
+      icon: require('../../assets/icon/icon-tawaf-live-white.png'),
+      title: 'Tawaf Live',
+      color: ['#AbE0EE', '#7CC3D5'],
+      navigation: 'Tawaf',
+      role: 'all'
+    },
+    {
+      id: 7,
+      icon: require('../../assets/icon/icon-walkie-talkie-white.png'),
+      title: 'Walkie Talkie',
+      color: ['#AbE0EE', '#7CC3D5'],
+      navigation: 'WalkieTalkie',
+      role: 'ustad'
+    },
+  ];
+  // Fungsi untuk membagi data ke dalam baris
+  const chunkData = (menu, numColumns) => {
+    // Filter item berdasarkan role
+    const filteredMenu = menu.filter(item => item.role === 'all' || item.role === role);
+
+    const rows = [];
+    for (let i = 0; i < filteredMenu.length; i += numColumns) {
+      rows.push(filteredMenu.slice(i, i + numColumns));
+    }
+
+    // Pastikan baris terakhir memiliki elemen kosong jika kurang dari numColumns
+    const lastRow = rows[rows.length - 1];
+    if (lastRow && lastRow.length < numColumns) {
+      while (lastRow.length < numColumns) {
+        lastRow.push({ id: `empty-${lastRow.length}`, name: "empty", empty: true });
+      }
+    }
+
+    return rows;
+  };
+
+  const rows = chunkData(menu, 4); // Membagi data menjadi baris dengan 4 kolom
+
 
   useEffect(() => {
+    console.log("row : ", rows);
+
     getItem("user").then((res) => {
       if (res) {
         setStatus(1);
+        if (res.is_ustadz || res.type_akun == '2') {
+          setRole("ustad");
+        } else {
+          setRole("jemaah");
+        }
       }
     });
   }, []);
@@ -374,16 +394,17 @@ const Home = ({ navigation }) => {
             {rows.map((row, rowIndex) => {
               return (
                 <View key={rowIndex} style={[BaseStyle.row, row.length === 4 ? BaseStyle.justifyBetween : BaseStyle.justifyContentLeft, BaseStyle.mb20]}>
-                  {row.map((item, y) => {
-                    return (
-                      <TouchableOpacity activeOpacity={0.7} key={y} style={[BaseStyle.w70, BaseStyle.alignItemsCenter]} onPress={() => navigation.navigate(item.navigation)}>
-                        <LinearGradient colors={item.empty ? ['#FFFFFF', '#FFFFFF'] : ['#82E49B', '#239647']} style={[BaseStyle.justifyCenter, BaseStyle.alignItemsCenter, BaseStyle.w60, BaseStyle.h60, BaseStyle.radius60, item.empty && BaseStyle.BgTrasnparent]}>
-                          <Image source={item.icon} style={[BaseStyle.w40, BaseStyle.h40]} />
-                        </LinearGradient>
-                        <Text style={[BaseStyle.textXS2, BaseStyle.MaisonBook, BaseStyle.textBlack, BaseStyle.textCenter, BaseStyle.pt5]}>{item.title}</Text>
-                      </TouchableOpacity>
-                    )
-                  })}
+                  {row
+                    .map((item, y) => {
+                      return (
+                        <TouchableOpacity activeOpacity={0.7} key={y} style={[BaseStyle.w70, BaseStyle.alignItemsCenter]} onPress={() => navigation.navigate(item.navigation)}>
+                          <LinearGradient colors={item.empty ? ['#FFFFFF', '#FFFFFF'] : ['#82E49B', '#239647']} style={[BaseStyle.justifyCenter, BaseStyle.alignItemsCenter, BaseStyle.w60, BaseStyle.h60, BaseStyle.radius60, item.empty && BaseStyle.BgTrasnparent]}>
+                            <Image source={item.icon} style={[BaseStyle.w40, BaseStyle.h40]} />
+                          </LinearGradient>
+                          <Text style={[BaseStyle.textXS2, BaseStyle.MaisonBook, BaseStyle.textBlack, BaseStyle.textCenter, BaseStyle.pt5]}>{item.title}</Text>
+                        </TouchableOpacity>
+                      )
+                    })}
                 </View>
               )
             })}
